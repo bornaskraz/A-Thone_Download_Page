@@ -3,212 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoneyTracker App | အနာဂတ် ငွေကြေးစီမံခန့်ခွဲမှု</title>
+    <title>MoneyTracker | The Future of Finance</title>
     <style>
-       :root {
-    /* Gradient Color များကို သတ်မှတ်ခြင်း */
-    --main-gradient: linear-gradient(90deg, #8A2BE2, #00BFFF); /* Blue Violet to Deep Sky Blue */
-    --hover-gradient: linear-gradient(90deg, #9932CC, #1E90FF); /* Slightly different shade for hover */
-    --bg-color: #121212; /* Dark Background */
-    --text-color: #f0f0f0; /* Light Text */
-    --secondary-color: #777;
-    --border-color: #333;
-}
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-color: #00d2ff;
+            --secondary-color: #928DAB;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-color: #ffffff;
+        }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f0c29;  /* fallback for old browsers */
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite; /* နောက်ခံအရောင် ရွေ့လျားခြင်း */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+            overflow: hidden;
+            position: relative;
+        }
 
-/* Header & Logo */
-.header {
-    width: 100%;
-    padding: 25px 0;
-    text-align: center;
-    border-bottom: 1px solid var(--border-color);
-}
+        /* Animated Background Blobs (အလှဆင် စက်ဝိုင်းများ) */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: #8A2BE2;
+            animation: float 8s ease-in-out infinite;
+        }
+        .blob-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: #00d2ff;
+            animation: float 10s ease-in-out infinite reverse;
+        }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        /* Glass Card Container */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px); /* မှန်သားပြင် effect */
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            animation: slideUp 1s ease-out;
+        }
 
-.app-icon {
-    width: 35px;
-    height: 35px;
-    filter: invert(100%); /* Icon ကို အဖြူရောင်ပြောင်းရန် */
-    margin-right: 12px;
-}
+        /* Logo Styling */
+        .logo-wrapper {
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            filter: invert(100%);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.5); /* Glow effect */
+        }
 
-.app-name {
-    font-size: 1.8rem;
-    font-weight: 800;
-}
+        h1 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, #00d2ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-/* Gradient Text Effect */
-.gradient-text {
-    background: var(--main-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent; /* Text ကို ဖျက်ပြီး Background Gradient ကို မြင်ရအောင် */
-}
+        p.subtitle {
+            font-size: 1.1rem;
+            color: #d1d1d1;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
 
-/* Hero Section */
-.hero-section {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 60px 20px;
-    text-align: center;
-}
+        /* Download Button Styling */
+        .btn-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
 
-.content-wrapper {
-    max-width: 700px;
-}
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(45deg, #8A2BE2, #00d2ff);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
+        }
 
-h1 {
-    font-size: 3rem;
-    font-weight: 900;
-    margin-bottom: 20px;
-    letter-spacing: -1px; /* ပိုမိုခေတ်မီစေရန် */
-}
+        /* Button Hover Effects */
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.4);
+        }
 
-.tagline {
-    font-size: 1.2rem;
-    color: var(--secondary-color);
-    margin-bottom: 50px;
-}
+        .download-btn.disabled {
+            background: #444;
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: 0.7;
+        }
 
-/* Download Button */
-.download-container {
-    margin-bottom: 40px;
-}
+        .download-btn img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            filter: invert(100%);
+        }
 
-.download-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--main-gradient);
-    color: white;
-    padding: 18px 40px;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 700;
-    border-radius: 12px;
-    transition: background 0.3s, opacity 0.3s, transform 0.2s;
-    margin: 0 auto;
-    max-width: 400px;
-    box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3); /* Gradient နဲ့လိုက်တဲ့ Shadow */
-}
+        /* Features */
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
 
-.download-btn:hover:not(.disabled-btn) {
-    background: var(--hover-gradient);
-    transform: translateY(-2px); /* Clickable ဖြစ်ကြောင်းပြရန် */
-}
+        .feature {
+            font-size: 0.85rem;
+            color: #aaa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .feature span {
+            font-size: 1.2rem;
+        }
 
-.btn-icon {
-    width: 25px;
-    height: 25px;
-    filter: invert(100%);
-    margin-right: 15px;
-}
+        /* Footer */
+        .version {
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
 
-.disabled-btn {
-    background: #444; /* မရသေးရင် အမဲရောင်နုနု */
-    cursor: not-allowed;
-    opacity: 0.6;
-    box-shadow: none;
-}
+        /* Animations */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-.version-text {
-    margin-top: 15px;
-    font-size: 0.95rem;
-    color: var(--secondary-color);
-}
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
 
-/* Features List */
-.features {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 50px;
-}
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-.feature-item {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-color);
-    padding: 10px 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background-color: #1e1e1e; /* Feature background */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.2rem;
-    }
-    .features {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .download-btn {
-        font-size: 1.1rem;
-        padding: 15px 30px;
-    }
-}
+        /* Responsive */
+        @media (max-width: 480px) {
+            .glass-card { padding: 30px 20px; }
+            h1 { font-size: 2rem; }
+            .features { flex-direction: column; gap: 15px; }
+        }
     </style>
 </head>
 <body>
 
-    <header class="header">
-        <div class="logo-container">
-            <img src="icon.jpg" alt="Money Tracker Logo" class="app-icon">
-            <span class="app-name">Money <span class="gradient-text">Tracker</span></span>
-        </div>
-    </header>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
 
-    <main class="hero-section">
-        <div class="content-wrapper">
-            <h1>သင်၏ ငွေကြေးစွမ်းအားကို စတင်ပါ။</h1>
-            <p class="tagline">Minimalist ဒီဇိုင်း၊ Maximum ထိရောက်မှု။</p>
-            
-            <div class="download-container">
-                <a href="#" id="downloadBtn" class="download-btn disabled-btn">
-                    <img src="icon.jpg" alt="Download Icon" class="btn-icon">
-                    Android APK Download (မကြာမီ)
-                </a>
-                <p class="version-text">Version 1.0.0 (Coming Soon)</p>
-            </div>
-            
-            <div class="features">
-                <div class="feature-item">✅ ရှင်းလင်းပြတ်သားသော Dashboards</div>
-                <div class="feature-item">💰 လျှင်မြန်သော ငွေစာရင်းသွင်းခြင်း</div>
-                <div class="feature-item">🛡️ Data လုံခြုံမှု အပြည့်အဝ</div>
-            </div>
+    <div class="glass-card">
+        <div class="logo-wrapper">
+            <img src="icon.jpg" alt="Logo" class="app-icon">
         </div>
-    </main>
+
+        <h1>Money Tracker</h1>
+        <p class="subtitle">
+            သင့်ဘဏ္ဍာရေးကို စနစ်တကျ စီမံခန့်ခွဲပါ။<br>
+            ရိုးရှင်းမှုနှင့် နည်းပညာ၏ ပေါင်းစပ်မှု။
+        </p>
+
+        <div class="btn-container">
+            <a href="#" id="downloadBtn" class="download-btn disabled">
+                <img src="icon.jpg" alt="Icon">
+                Download APK (မကြာမီ)
+            </a>
+        </div>
+
+        <div class="features">
+            <div class="feature"><span>🚀</span> Fast</div>
+            <div class="feature"><span>🔒</span> Secure</div>
+            <div class="feature"><span>💎</span> Simple</div>
+        </div>
+
+        <p class="version">Version 1.0.0 &bull; Ngwe Mat Su</p>
+    </div>
 
     <script>
-        // APK file ရလာတဲ့အခါ ဒီ script ကို ဖျက်ပြီး HTML link ကိုပဲ ပြင်နိုင်ပါတယ်။
-        document.addEventListener('DOMContentLoaded', function() {
+        // --- JAVASCRIPT ---
+        document.addEventListener('DOMContentLoaded', () => {
             const btn = document.getElementById('downloadBtn');
-            btn.addEventListener('click', function(e) {
-                if (btn.classList.contains('disabled-btn')) {
+            
+            btn.addEventListener('click', (e) => {
+                // 'disabled' class ရှိနေရင် Download မလုပ်ဘဲ Alert ပြမယ်
+                if (btn.classList.contains('disabled')) {
                     e.preventDefault();
-                    alert('Download Link ကို မကြာမီ ဖွင့်ပေးပါမည်။');
+                    // Custom Alert အစား Button ပေါ်မှာ စာပြောင်းပြခြင်း
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = "Comming Soon...";
+                    btn.style.background = "#FF4B2B"; // အနီရောင်ပြောင်းသွားမယ်
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = ""; // မူလအတိုင်းပြန်ထားမယ်
+                    }, 2000);
                 }
             });
         });
