@@ -3,257 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoneyTracker | The Future of Finance</title>
+    <title>MoneyTracker - Smart Finance</title>
     <style>
-        /* --- CSS STYLES --- */
+        /* --- CORE STYLES --- */
         :root {
-            --primary-color: #00d2ff;
-            --secondary-color: #928DAB;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-color: #ffffff;
+            --bg-color: #050505;
+            --grid-color: rgba(255, 255, 255, 0.05);
+            --accent-color: #3b82f6; /* Professional Blue */
+            --text-main: #ffffff;
+            --text-muted: #888888;
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0f0c29;  /* fallback for old browsers */
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite; /* နောက်ခံအရောင် ရွေ့လျားခြင်း */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-color);
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Animated Background Blobs (အလှဆင် စက်ဝိုင်းများ) */
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: -1;
-            opacity: 0.6;
-        }
-        .blob-1 {
-            top: -10%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: #8A2BE2;
-            animation: float 8s ease-in-out infinite;
-        }
-        .blob-2 {
-            bottom: -10%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: #00d2ff;
-            animation: float 10s ease-in-out infinite reverse;
-        }
-
-        /* Glass Card Container */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px); /* မှန်သားပြင် effect */
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 50px 40px;
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            animation: slideUp 1s ease-out;
-        }
-
-        /* Logo Styling */
-        .logo-wrapper {
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .app-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            filter: invert(100%);
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.5); /* Glow effect */
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin: 10px 0;
-            font-weight: 800;
-            background: linear-gradient(to right, #fff, #00d2ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p.subtitle {
-            font-size: 1.1rem;
-            color: #d1d1d1;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-
-        /* Download Button Styling */
-        .btn-container {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 18px 40px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(45deg, #8A2BE2, #00d2ff);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* Button Hover Effects */
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.4);
-        }
-
-        .download-btn.disabled {
-            background: #444;
-            cursor: not-allowed;
-            box-shadow: none;
-            opacity: 0.7;
-        }
-
-        .download-btn img {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            filter: invert(100%);
-        }
-
-        /* Features */
-        .features {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-        }
-
-        .feature {
-            font-size: 0.85rem;
-            color: #aaa;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
         }
-        .feature span {
+
+        /* --- BACKGROUND GRID EFFECT --- */
+        .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px; /* Grid အကွက်ဆိုဒ် */
+            z-index: -1;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        }
+
+        /* --- CONTENT WRAPPER --- */
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            z-index: 1;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        /* --- LOGO STYLING (CLEAN WHITE) --- */
+        .logo-box {
+            margin-bottom: 30px;
+        }
+        
+        .app-icon {
+            width: 80px; /* Logo အကြီး */
+            height: auto;
+            /* JPG အဖြူနောက်ခံကို အမဲပြောင်းပြီး၊ အမဲ Logo ကို အဖြူပြောင်းခြင်း */
+            filter: invert(1) contrast(1.2); 
+            mix-blend-mode: screen; /* အမဲရောင်နောက်ခံကို ဖျောက်ပြီး Icon သီးသန့်ပေါ်စေခြင်း */
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -2px; /* Tight spacing for modern look */
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        h1 span {
+            color: var(--text-muted); /* "Tracker" ကို အရောင်မှိန်ထားခြင်း */
+        }
+
+        p.description {
             font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: 20px;
+            margin-bottom: 50px;
+            line-height: 1.6;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Footer */
-        .version {
-            margin-top: 25px;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.4);
+        /* --- DOWNLOAD BUTTON --- */
+        .download-btn {
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            padding: 16px 40px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 6px; /* Slightly rounded, almost square */
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
         }
 
-        /* Animations */
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .download-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        .download-btn.disabled {
+            background-color: #333;
+            color: #666;
+            cursor: not-allowed;
+            box-shadow: none;
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .download-btn.disabled:hover {
+            transform: none;
+        }
+
+        /* --- FOOTER BADGE --- */
+        .badge {
+            margin-top: 60px;
+            font-size: 0.75rem;
+            color: #444;
+            border: 1px solid #222;
+            padding: 8px 16px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Responsive */
-        @media (max-width: 480px) {
-            .glass-card { padding: 30px 20px; }
-            h1 { font-size: 2rem; }
-            .features { flex-direction: column; gap: 15px; }
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .grid-bg { background-size: 30px 30px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
+    <div class="grid-bg"></div>
 
-    <div class="glass-card">
-        <div class="logo-wrapper">
+    <div class="container">
+        <div class="logo-box">
             <img src="icon.jpg" alt="Logo" class="app-icon">
         </div>
 
-        <h1>Money Tracker</h1>
-        <p class="subtitle">
-            သင့်ဘဏ္ဍာရေးကို စနစ်တကျ စီမံခန့်ခွဲပါ။<br>
-            ရိုးရှင်းမှုနှင့် နည်းပညာ၏ ပေါင်းစပ်မှု။
+        <h1>Money <span>Tracker</span></h1>
+        
+        <p class="description">
+            ငွေကြေးစီမံမှုကို လက်ဖျားထိပ်မှာ ထိန်းချုပ်ပါ။ <br>
+            မြန်ဆန်၊ တိကျ၊ လုံခြုံသော Application.
         </p>
 
-        <div class="btn-container">
-            <a href="#" id="downloadBtn" class="download-btn disabled">
-                <img src="icon.jpg" alt="Icon">
-                Download APK (မကြာမီ)
-            </a>
-        </div>
+        <a href="#" id="downloadBtn" class="download-btn disabled">
+            Download APK (Coming Soon)
+        </a>
 
-        <div class="features">
-            <div class="feature"><span>🚀</span> Fast</div>
-            <div class="feature"><span>🔒</span> Secure</div>
-            <div class="feature"><span>💎</span> Simple</div>
+        <div style="margin-top: 20px;">
+            <span class="badge">v1.0.0 &bull; Beta</span>
         </div>
-
-        <p class="version">Version 1.0.0 &bull; Ngwe Mat Su</p>
     </div>
 
     <script>
-        // --- JAVASCRIPT ---
         document.addEventListener('DOMContentLoaded', () => {
             const btn = document.getElementById('downloadBtn');
-            
             btn.addEventListener('click', (e) => {
-                // 'disabled' class ရှိနေရင် Download မလုပ်ဘဲ Alert ပြမယ်
                 if (btn.classList.contains('disabled')) {
                     e.preventDefault();
-                    // Custom Alert အစား Button ပေါ်မှာ စာပြောင်းပြခြင်း
-                    const originalText = btn.innerHTML;
-                    btn.innerHTML = "Comming Soon...";
-                    btn.style.background = "#FF4B2B"; // အနီရောင်ပြောင်းသွားမယ်
-                    
-                    setTimeout(() => {
-                        btn.innerHTML = originalText;
-                        btn.style.background = ""; // မူလအတိုင်းပြန်ထားမယ်
-                    }, 2000);
+                    // ရိုးရှင်းစွာ အသိပေးခြင်း
+                    alert("ဗားရှင်းအသစ် မကြာမီ ထွက်ရှိပါမည်။");
                 }
             });
         });
