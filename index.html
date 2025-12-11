@@ -3,267 +3,303 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Money Tracker | ငွေကြေးစီမံခန့်ခွဲမှု</title>
+    <title>Money Tracker | The Future of Finance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- THEME VARIABLES --- */
+        /* --- 1. MODERN VARIABLES --- */
         :root {
-            --bg-main: #0a0a0a;
-            --bg-secondary: #111111;
-            --primary-color: #10B981; /* Emerald Green */
+            --bg-dark: #050505;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.1);
+            --accent-gradient: linear-gradient(135deg, #00f260 0%, #0575E6 100%); /* Green to Blue */
             --text-main: #ffffff;
-            --text-muted: #9ca3af;
-            --border: #262626;
+            --text-muted: #94a3b8;
         }
 
+        /* --- 2. GLOBAL RESET --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background-color: var(--bg-main);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
             color: var(--text-main);
+            overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* --- LAYOUT UTILITIES --- */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* --- 3. ANIMATED AURORA BACKGROUND --- */
+        .background-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 15% 50%, rgba(5, 117, 230, 0.08), transparent 25%),
+                        radial-gradient(circle at 85% 30%, rgba(0, 242, 96, 0.08), transparent 25%);
+            filter: blur(60px);
+            animation: pulseGlow 10s ease-in-out infinite alternate;
         }
 
-        /* --- HERO SECTION (Download Area) --- */
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        /* --- 4. CONTAINER & TYPOGRAPHY --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
+        
+        /* Gradient Text Effect */
+        .text-gradient {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* --- 5. HERO SECTION --- */
         .hero {
-            min-height: 80vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            position: relative;
+            padding-top: 60px;
         }
 
-        /* Background Glow */
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            pointer-events: none;
+        .hero-badge {
+            background: rgba(0, 242, 96, 0.1);
+            color: #00f260;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(0, 242, 96, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .app-icon {
-            width: 90px;
-            height: 90px;
-            border-radius: 22px;
-            margin-bottom: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        .app-icon-lg {
+            width: 100px;
+            height: 100px;
+            border-radius: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 40px rgba(0, 242, 96, 0.2);
+            border: 1px solid var(--glass-border);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin: 0 0 15px 0;
-            letter-spacing: -1px;
+        .app-icon-lg:hover { transform: scale(1.05) rotate(3deg); }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
         }
 
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             color: var(--text-muted);
-            max-width: 500px;
-            margin-bottom: 40px;
+            max-width: 600px;
+            margin-bottom: 50px;
         }
 
-        .download-btn {
-            background-color: var(--primary-color);
+        /* Modern Glowing Button */
+        .cta-btn {
+            position: relative;
+            background: var(--text-main);
             color: #000;
+            padding: 18px 48px;
+            border-radius: 100px;
             font-weight: 700;
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
+            text-decoration: none;
+            overflow: hidden;
+            transition: transform 0.2s;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
-        }
-        
-        .download-btn.disabled {
-            background-color: #333;
-            color: #666;
-            cursor: not-allowed;
-            box-shadow: none;
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+        .cta-btn.disabled { opacity: 0.6; cursor: not-allowed; background: #333; color: #888; }
+        .cta-btn img { width: 24px; height: 24px; }
+
+        /* --- 6. BENTO GRID (FACTS SECTION) --- */
+        .features-section {
+            padding: 100px 0;
+            position: relative;
         }
 
-        /* --- FACTS SECTION (New Content) --- */
-        .info-section {
-            background-color: var(--bg-secondary);
-            padding: 80px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .section-title {
+        .section-header {
             text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 50px;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-        }
-
-        /* Grid for Benefits */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
             margin-bottom: 60px;
         }
 
-        .benefit-card {
-            background: var(--bg-main);
-            border: 1px solid var(--border);
-            padding: 30px;
-            border-radius: 16px;
-            transition: transform 0.3s;
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
         }
 
-        .benefit-card:hover {
-            border-color: var(--primary-color);
+        /* Glassmorphism Cards */
+        .bento-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px 30px;
+            border-radius: 24px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            border-color: var(--glass-highlight);
             transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3);
         }
 
-        .benefit-icon {
-            font-size: 2rem;
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
             margin-bottom: 20px;
-            display: block;
+            border: 1px solid var(--glass-border);
         }
 
-        .benefit-card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.2rem;
-        }
+        .bento-card h3 { font-size: 1.3rem; margin-bottom: 12px; color: #fff; }
+        .bento-card p { color: var(--text-muted); font-size: 0.95rem; }
 
-        .benefit-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin: 0;
-        }
-
-        /* Target Audience Section */
-        .who-should-use {
-            background: #1a1a1a;
-            border-radius: 20px;
-            padding: 40px;
+        /* Audience Tag Cloud */
+        .audience-wrapper {
+            grid-column: 1 / -1; /* Full width */
             text-align: center;
+            margin-top: 40px;
+            padding: 40px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
         }
 
-        .audience-tags {
+        .tags-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
+            gap: 12px;
+            margin-top: 20px;
         }
 
-        .tag {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--primary-color);
-            padding: 10px 20px;
+        .pill {
+            padding: 8px 20px;
             border-radius: 50px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
             font-size: 0.9rem;
-            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--text-muted);
+            transition: 0.3s;
         }
+        .pill:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: #fff; }
 
-        /* --- FOOTER --- */
+        /* --- 7. FOOTER --- */
         footer {
-            padding: 40px 0;
+            padding: 50px 0;
             text-align: center;
-            color: #444;
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid var(--glass-border);
+            color: #555;
+            font-size: 0.9rem;
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .hero { min-height: 70vh; }
-            .info-section { padding: 50px 0; }
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .bento-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <div class="container">
-            <img src="icon.jpg" alt="Money Tracker Logo" class="app-icon">
-            <h1>Money Tracker</h1>
+    <div class="background-glow"></div>
+
+    <div class="container">
+        
+        <section class="hero">
+            <div class="hero-badge">Finance Made Simple</div>
+            
+            <img src="icon.jpg" alt="Ngwe Mat Su Icon" class="app-icon-lg">
+            
+            <h1>Smart Way to Track <br> Your <span class="text-gradient">Money</span></h1>
             <p>
                 ဝင်ငွေထွက်ငွေများကို စနစ်တကျ မှတ်တမ်းတင်ပြီး<br>
                 သင့်ဘဏ္ဍာရေး လွတ်လပ်ခွင့်ကို ဒီနေ့ပဲ စတင်လိုက်ပါ။
             </p>
-            
-            <a href="#" id="downloadBtn" class="download-btn disabled">
-                <span>Download APK (Coming Soon)</span>
-            </a>
-        </div>
-    </section>
 
-    <section class="info-section">
-        <div class="container">
+            <a href="#" id="downloadBtn" class="cta-btn disabled">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download for Android
+            </a>
             
-            <h2 class="section-title">ငွေစာရင်းမှတ်ခြင်း၏ အကျိုးကျေးဇူးများ</h2>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <span class="benefit-icon">💡</span>
-                    <h3>အသုံးစရိတ်ကို မြင်သာစေခြင်း</h3>
+            <p style="font-size: 0.85rem; margin-top: 15px; opacity: 0.5;">Version 1.0.0 • Coming Soon</p>
+        </section>
+
+        <section class="features-section">
+            <div class="section-header">
+                <h2 style="font-size: 2rem;">Why Track Money?</h2>
+                <p style="color: var(--text-muted);">ငွေစာရင်းမှတ်ခြင်း၏ အားသာချက်များ</p>
+            </div>
+
+            <div class="bento-grid">
+                <div class="bento-card">
+                    <div class="icon-box">👁️</div>
+                    <h3>Awareness</h3>
                     <p>မိမိပိုက်ဆံတွေ ဘယ်နေရာမှာ ကုန်နေလဲဆိုတာကို တိတိကျကျ သိရှိနိုင်ပြီး မလိုအပ်တဲ့ အသုံးစရိတ်တွေကို လျှော့ချနိုင်ပါတယ်။</p>
                 </div>
-                <div class="benefit-card">
-                    <span class="benefit-icon">🎯</span>
-                    <h3>ရည်မှန်းချက် ပြည့်မီခြင်း</h3>
+
+                <div class="bento-card">
+                    <div class="icon-box">🎯</div>
+                    <h3>Financial Goals</h3>
                     <p>ကားဝယ်မလား၊ အိမ်ဆောက်မလား? ငွေစုမယ့် Goal ထားပြီး စနစ်တကျ စီမံခန့်ခွဲနိုင်ဖို့ ကူညီပေးပါတယ်။</p>
                 </div>
-                <div class="benefit-card">
-                    <span class="benefit-icon">🧘</span>
-                    <h3>စိတ်ဖိစီးမှု လျော့ကျခြင်း</h3>
+
+                <div class="bento-card">
+                    <div class="icon-box">🧘‍♂️</div>
+                    <h3>Peace of Mind</h3>
                     <p>လကုန်ခါနီး ပိုက်ဆံပြတ်လပ်တဲ့ ဒုက္ခမှ ကင်းဝေးပြီး၊ လက်ကျန်ငွေကို ကြိုတင်ခန့်မှန်းနိုင်လို့ စိတ်အေးချမ်းမှု ရစေပါတယ်။</p>
                 </div>
-            </div>
 
-            <div class="who-should-use">
-                <h3>ဒီ App ကို ဘယ်သူတွေ သုံးသင့်လဲ?</h3>
-                <p style="color: var(--text-muted); margin-top: 10px;">
-                    Digital Finance စနစ်သည် လူတိုင်းအတွက် အရေးပါသော လက်နက်တစ်ခုဖြစ်သည်။
-                </p>
-                
-                <div class="audience-tags">
-                    <span class="tag">🎓 ကျောင်းသား/ကျောင်းသူများ</span>
-                    <span class="tag">💼 လစာစား ဝန်ထမ်းများ</span>
-                    <span class="tag">💻 Freelancers များ</span>
-                    <span class="tag">🏠 အိမ်ရှင်မများ</span>
-                    <span class="tag">🚀 လုပ်ငန်းရှင်အသစ်များ</span>
+                <div class="audience-wrapper">
+                    <h3 style="margin-bottom: 10px;">Who is this for?</h3>
+                    <p style="color: var(--text-muted);">ဒီ App ကို ဘယ်သူတွေ သုံးသင့်လဲ</p>
+                    <div class="tags-container">
+                        <span class="pill">🎓 Students</span>
+                        <span class="pill">💼 Employees</span>
+                        <span class="pill">💻 Freelancers</span>
+                        <span class="pill">🏠 Home Makers</span>
+                        <span class="pill">🚀 Entrepreneurs</span>
+                    </div>
                 </div>
             </div>
+        </section>
 
-        </div>
-    </section>
+    </div>
 
     <footer>
-        <div class="container">
-            Money Tracker App &copy; 2025<br>
-            Made with ❤️ for Financial Freedom.
-        </div>
+        <p>Ngwe Mat Su (ငွေမှတ်စု) &copy; 2025. All rights reserved.</p>
     </footer>
 
     <script>
@@ -273,14 +309,14 @@
                 if (btn.classList.contains('disabled')) {
                     e.preventDefault();
                     const originalText = btn.innerHTML;
-                    btn.innerHTML = "ဗားရှင်းသစ် မကြာမီ ထွက်ရှိပါမည်";
-                    btn.style.backgroundColor = "#fff";
-                    btn.style.color = "#000";
+                    // Button Animation Effect on Click
+                    btn.innerHTML = "Opening Soon...";
+                    btn.style.transform = "scale(0.95)";
+                    
                     setTimeout(() => {
                         btn.innerHTML = originalText;
-                        btn.style.backgroundColor = "";
-                        btn.style.color = "";
-                    }, 2000);
+                        btn.style.transform = "scale(1)";
+                    }, 1500);
                 }
             });
         });
