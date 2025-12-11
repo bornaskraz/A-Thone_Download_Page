@@ -3,251 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Money Tracker | Emerald Edition</title>
+    <title>Money Tracker | Professional Finance</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. GREEN THEME PALETTE --- */
+        /* --- 1. COLOR PALETTE --- */
         :root {
-            /* နောက်ခံ အစိမ်းရင့် (မျက်လုံးအေး) */
-            --bg-color: #022c22; 
+            /* Background Gradient Colors */
+            --bg-start: #0f3d3e; /* Deep Teal */
+            --bg-end: #102a28;   /* Dark Jungle */
             
-            /* Glass Card အစိမ်း */
-            --glass-bg: rgba(6, 78, 59, 0.4);
-            --glass-border: rgba(52, 211, 153, 0.2);
+            /* Text Colors */
+            --text-white: #f0fdfa;
+            --text-muted: #99f6e4; /* Light Teal Text */
             
-            /* စာလုံးအရောင်များ */
-            --text-main: #ecfdf5; /* အစိမ်းနုဖျော့ဖျော့ */
-            --text-muted: #6ee7b7; /* အစိမ်းလယ်အလတ် */
+            /* Accent Colors */
+            --accent-lime: #2dd4bf; /* Teal/Lime Mix */
+            --accent-glow: rgba(45, 212, 191, 0.3);
             
-            /* Accent & Button */
-            --primary-green: #10b981;
-            --bright-green: #34d399;
+            /* Card Colors */
+            --card-bg: rgba(17, 48, 48, 0.6);
+            --card-border: rgba(94, 234, 212, 0.2);
         }
 
-        /* --- 2. GLOBAL RESET --- */
+        /* --- 2. BASE STYLES --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+            color: var(--text-white);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
         }
 
-        /* --- 3. ANIMATED GREEN BACKGROUND --- */
-        .glow-bg {
+        /* --- 3. BACKGROUND EFFECTS --- */
+        .bg-glow {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: -1;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(5, 150, 105, 0.15) 0%, transparent 40%);
+            filter: blur(80px);
+            opacity: 0.6;
         }
 
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            z-index: -1;
-            animation: float 10s ease-in-out infinite alternate;
-        }
-
-        .orb-1 {
-            top: 20%; left: 30%; width: 300px; height: 300px;
-            background: rgba(16, 185, 129, 0.2);
-        }
-        .orb-2 {
-            bottom: 20%; right: 10%; width: 400px; height: 400px;
-            background: rgba(4, 120, 87, 0.3);
-            animation-delay: -5s;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-30px); }
-        }
-
-        /* --- 4. LAYOUT --- */
+        /* --- 4. CONTAINER --- */
         .container {
-            max-width: 900px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
             padding: 40px 24px;
+            text-align: center;
         }
 
         /* --- 5. HERO SECTION --- */
-        .hero {
-            text-align: center;
-            padding: 60px 0;
+        .header {
+            margin-top: 40px;
+            margin-bottom: 50px;
+        }
+
+        .logo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
         }
 
         .app-icon {
             width: 100px;
             height: 100px;
-            border-radius: 24px;
-            border: 2px solid var(--primary-green);
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.4); /* Green Glow */
-            margin-bottom: 30px;
+            border-radius: 22px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border: 2px solid var(--card-border);
         }
 
         h1 {
-            font-size: 3rem;
-            line-height: 1.1;
+            font-size: 2.8rem;
+            font-weight: 700;
             margin-bottom: 10px;
-            background: linear-gradient(to right, #ffffff, #34d399);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: -1px;
         }
 
-        h2 {
-            font-size: 1.2rem;
+        .subtitle {
+            font-size: 1.1rem;
             color: var(--text-muted);
-            font-weight: 400;
-            margin-bottom: 20px;
+            font-weight: 300;
+            line-height: 1.6;
         }
 
-        .description {
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-            color: #a7f3d0; /* Soft Green Text */
+        /* --- 6. MODERN BUTTON --- */
+        .btn-wrapper {
+            margin-bottom: 60px;
         }
 
-        /* Green Button */
-        .download-btn {
-            background: var(--primary-green);
-            color: #022c22; /* Dark Green Text */
-            font-weight: 800;
-            padding: 16px 40px;
-            border-radius: 50px;
+        .primary-btn {
+            background-color: var(--accent-lime);
+            color: #042f2e; /* Dark Text on Button */
+            padding: 18px 40px;
+            border-radius: 16px;
+            font-weight: 700;
             text-decoration: none;
+            font-size: 1.1rem;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.3s;
-            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+            gap: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(45, 212, 191, 0.2);
         }
 
-        .download-btn:hover {
-            background: var(--bright-green);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(52, 211, 153, 0.5);
+        .primary-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(45, 212, 191, 0.4);
+            background-color: #5eead4;
         }
 
-        .download-btn.disabled {
-            background: #064e3b;
-            color: #065f46;
+        .primary-btn.disabled {
+            background-color: #1e4545;
+            color: #5f8a8a;
             cursor: not-allowed;
             box-shadow: none;
         }
 
-        /* --- 6. GREEN CARDS --- */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
+        /* --- 7. INFO CARDS (Stack Layout) --- */
+        .info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
         .card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 24px;
+            border-radius: 18px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            backdrop-filter: blur(12px);
+            transition: transform 0.2s;
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--bright-green);
-            background: rgba(6, 78, 59, 0.7);
+            background: rgba(17, 48, 48, 0.9);
+            border-color: var(--accent-lime);
         }
 
-        .icon-circle {
+        .card-icon {
+            font-size: 1.8rem;
+            background: rgba(45, 212, 191, 0.1);
             width: 50px;
             height: 50px;
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--bright-green);
-            border-radius: 50%;
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            align-items: center;
+            border-radius: 12px;
+            color: var(--accent-lime);
         }
 
-        .card h3 {
-            margin-bottom: 10px;
+        .card-text h3 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
             color: #fff;
         }
 
-        .card p {
-            color: var(--text-muted);
+        .card-text p {
             font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
         }
 
-        /* --- 7. FOOTER --- */
-        footer {
+        /* --- 8. FOOTER --- */
+        .footer {
             margin-top: 60px;
-            text-align: center;
-            color: #047857;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            color: #5f8a8a;
+            padding-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="glow-bg">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-    </div>
+    <div class="bg-glow"></div>
 
     <div class="container">
         
-        <section class="hero">
-            <img src="icon.jpg" alt="Icon" class="app-icon">
+        <header class="header">
+            <div class="logo-wrapper">
+                <img src="icon.jpg" alt="Logo" class="app-icon">
+            </div>
             
             <h1>Money Tracker</h1>
-            <h2>Smart Green Finance</h2>
-
-            <p class="description">
-                မျက်လုံးအေးပြီး အသုံးပြုရလွယ်ကူသော ငွေစာရင်းမှတ် App။<br>
-                သင့်ငွေကြေးများကို စိမ်းလန်းစိုပြေအောင် စီမံခန့်ခွဲလိုက်ပါ။
+            <p class="subtitle">
+                သင့်ဘဏ္ဍာရေးကို စိမ်းလန်းစိုပြေစေမယ့်<br>
+                ခေတ်မီ ငွေကြေးမှတ်တမ်း Application
             </p>
+        </header>
 
-            <a href="#" id="downloadBtn" class="download-btn disabled">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        <div class="btn-wrapper">
+            <a href="#" id="downloadBtn" class="primary-btn disabled">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                 Download APK
             </a>
-        </section>
+            <div style="margin-top: 15px; font-size: 0.85rem; color: #5f8a8a;">Version 1.0.0 • Coming Soon</div>
+        </div>
 
-        <section class="features-grid">
-            <div class="card">
-                <div class="icon-circle">☘️</div>
-                <h3>Eco-Friendly UI</h3>
-                <p>မျက်လုံးမထိခိုက်စေသော Dark Green ဒီဇိုင်းဖြင့် ရေးဆွဲထားပါသည်။</p>
-            </div>
+        <div class="info-cards">
             
             <div class="card">
-                <div class="icon-circle">📈</div>
-                <h3>Track & Grow</h3>
-                <p>အပင်လေးများ ကြီးထွားသကဲ့သို့ သင့်ငွေစုငွေများကို တိုးပွားစေပါမည်။</p>
+                <div class="card-icon">💎</div>
+                <div class="card-text">
+                    <h3>Simple & Smart</h3>
+                    <p>ရိုးရှင်းသော ဒီဇိုင်းဖြင့် ဝင်ငွေထွက်ငွေများကို လွယ်ကူစွာ မှတ်သားနိုင်ပါသည်။</p>
+                </div>
             </div>
-            
-            <div class="card">
-                <div class="icon-circle">🔒</div>
-                <h3>Secure Data</h3>
-                <p>အချက်အလက်များကို လုံခြုံစိတ်ချစွာ သိမ်းဆည်းပေးထားပါသည်။</p>
-            </div>
-        </section>
 
-        <footer>
-            Money Tracker &copy; 2025 • Green Edition
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <div class="card-text">
+                    <h3>Clear Reports</h3>
+                    <p>လစဉ် ငွေကြေးသုံးစွဲမှု အခြေအနေများကို ရှင်းလင်းစွာ ကြည့်ရှုနိုင်ပါသည်။</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <div class="card-text">
+                    <h3>Private & Secure</h3>
+                    <p>သင့်အချက်အလက်များကို လုံခြုံစိတ်ချစွာ သိမ်းဆည်းပေးထားပါသည်။</p>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            Ngwe Mat Su &copy; 2025. All rights reserved.
         </footer>
+
     </div>
 
     <script>
@@ -256,11 +254,13 @@
             btn.addEventListener('click', (e) => {
                 if (btn.classList.contains('disabled')) {
                     e.preventDefault();
-                    const oldHtml = btn.innerHTML;
-                    btn.innerHTML = "Coming Soon...";
-                    btn.style.opacity = "0.7";
+                    // Button Text Change Animation
+                    const originalContent = btn.innerHTML;
+                    btn.innerHTML = "Opening Soon...";
+                    btn.style.opacity = "0.8";
+                    
                     setTimeout(() => {
-                        btn.innerHTML = oldHtml;
+                        btn.innerHTML = originalContent;
                         btn.style.opacity = "1";
                     }, 1500);
                 }
