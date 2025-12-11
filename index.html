@@ -3,38 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Money Tracker | Smart Finance</title>
+    <title>Money Tracker | ငွေကြေးစီမံခန့်ခွဲမှု</title>
     <style>
         /* --- THEME VARIABLES --- */
         :root {
-            --bg-color: #0a0a0a;       /* အမဲရောင် အစစ် */
-            --card-bg: #171717;        /* ကတ်ပြားအရောင် (အမဲဖျော့) */
-            --primary-color: #10B981;  /* ငွေကြေးဆိုင်ရာ အစိမ်းရောင် */
-            --text-main: #ffffff;      /* စာလုံးအဖြူ */
-            --text-muted: #a3a3a3;     /* စာလုံးမီးခိုး */
-            --border-color: #262626;   /* ဘောင်အရောင် */
+            --bg-main: #0a0a0a;
+            --bg-secondary: #111111;
+            --primary-color: #10B981; /* Emerald Green */
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --border: #262626;
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-color);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: var(--bg-main);
             color: var(--text-main);
-            height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- HERO SECTION (Download Area) --- */
+        .hero {
+            min-height: 80vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            text-align: center;
             position: relative;
         }
 
-        /* Ambient Glow Effect (နောက်ခံ အလင်းရောင်မှိန်မှိန်) */
-        .glow-effect {
+        /* Background Glow */
+        .hero::before {
+            content: '';
             position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(0,0,0,0) 70%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -42,154 +56,234 @@
             pointer-events: none;
         }
 
-        /* --- MAIN CARD --- */
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            width: 100%;
-            max-width: 400px;
-            padding: 50px 30px;
-            border-radius: 24px;
-            text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-
-        /* --- LOGO --- */
         .app-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 18px; /* App Icon ပုံစံ */
+            width: 90px;
+            height: 90px;
+            border-radius: 22px;
             margin-bottom: 25px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
-            object-fit: cover; /* ပုံမပျက်အောင် ထိန်းခြင်း */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        /* --- TYPOGRAPHY --- */
         h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 0 0 10px 0;
-            letter-spacing: -0.5px;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0 0 15px 0;
+            letter-spacing: -1px;
         }
 
-        .tagline {
-            color: var(--primary-color);
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        p.description {
+        .hero p {
+            font-size: 1.1rem;
             color: var(--text-muted);
-            font-size: 1rem;
-            line-height: 1.6;
+            max-width: 500px;
             margin-bottom: 40px;
         }
 
-        /* --- FEATURES GRID --- */
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 40px;
-            text-align: left;
-        }
-
-        .feature-item {
-            background: #202020;
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            color: #d4d4d4;
-            display: flex;
+        .download-btn {
+            background-color: var(--primary-color);
+            color: #000;
+            font-weight: 700;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
             align-items: center;
             gap: 10px;
         }
 
-        .check-icon {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-
-        /* --- DOWNLOAD BUTTON --- */
-        .download-btn {
-            display: block;
-            width: 100%;
-            background-color: var(--primary-color);
-            color: #000; /* အစိမ်းပေါ်မှာ အမဲစာလုံးက ပိုထင်ရှားပါတယ် */
-            padding: 16px 0;
-            border-radius: 12px;
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: transform 0.2s, background-color 0.2s;
-            box-sizing: border-box;
-        }
-
         .download-btn:hover {
-            background-color: #34d399; /* Hover လုပ်ရင် အရောင်လင်းမယ် */
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
         }
-
+        
         .download-btn.disabled {
             background-color: #333;
             color: #666;
             cursor: not-allowed;
-            pointer-events: none; /* Click လို့မရအောင် ပိတ်ခြင်း */
+            box-shadow: none;
+        }
+
+        /* --- FACTS SECTION (New Content) --- */
+        .info-section {
+            background-color: var(--bg-secondary);
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        /* Grid for Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .benefit-card {
+            background: var(--bg-main);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 16px;
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .benefit-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .benefit-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Target Audience Section */
+        .who-should-use {
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .audience-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .tag {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
         /* --- FOOTER --- */
-        .footer {
-            margin-top: 25px;
-            font-size: 0.8rem;
-            color: #525252;
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: #444;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
         }
 
-        @media (max-width: 480px) {
-            .card {
-                border: none;
-                background: transparent;
-                box-shadow: none;
-            }
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .hero { min-height: 70vh; }
+            .info-section { padding: 50px 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="glow-effect"></div>
-
-    <div class="card">
-        <img src="icon.jpg" alt="Money Tracker Logo" class="app-icon">
-
-       
-        <h1>Money Tracker</h1>
-         <span class="tagline">Finance Made Simple</span>
-        
-        <p class="description">
-            ဝင်ငွေထွက်ငွေများကို စနစ်တကျ မှတ်တမ်းတင်ပြီး 
-            သင့်ဘဏ္ဍာရေး အနာဂတ်ကို တည်ဆောက်ပါ။
-        </p>
-
-        <div class="features">
-            <div class="feature-item"><span class="check-icon">✓</span> လွယ်ကူသော မှတ်တမ်း</div>
-            <div class="feature-item"><span class="check-icon">✓</span> ရှင်းလင်းသော စာရင်း</div>
-            <div class="feature-item"><span class="check-icon">✓</span> Data လုံခြုံမှု</div>
-            <div class="feature-item"><span class="check-icon">✓</span> Offline အသုံးပြုနိုင်</div>
+    <section class="hero">
+        <div class="container">
+            <img src="icon.jpg" alt="Money Tracker Logo" class="app-icon">
+            <h1>Money Tracker</h1>
+            <p>
+                ဝင်ငွေထွက်ငွေများကို စနစ်တကျ မှတ်တမ်းတင်ပြီး<br>
+                သင့်ဘဏ္ဍာရေး လွတ်လပ်ခွင့်ကို ဒီနေ့ပဲ စတင်လိုက်ပါ။
+            </p>
+            
+            <a href="#" id="downloadBtn" class="download-btn disabled">
+                <span>Download APK (Coming Soon)</span>
+            </a>
         </div>
+    </section>
 
-        <a href="#" class="download-btn disabled">
-            Download APK (Coming Soon)
-        </a>
+    <section class="info-section">
+        <div class="container">
+            
+            <h2 class="section-title">ငွေစာရင်းမှတ်ခြင်း၏ အကျိုးကျေးဇူးများ</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <span class="benefit-icon">💡</span>
+                    <h3>အသုံးစရိတ်ကို မြင်သာစေခြင်း</h3>
+                    <p>မိမိပိုက်ဆံတွေ ဘယ်နေရာမှာ ကုန်နေလဲဆိုတာကို တိတိကျကျ သိရှိနိုင်ပြီး မလိုအပ်တဲ့ အသုံးစရိတ်တွေကို လျှော့ချနိုင်ပါတယ်။</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🎯</span>
+                    <h3>ရည်မှန်းချက် ပြည့်မီခြင်း</h3>
+                    <p>ကားဝယ်မလား၊ အိမ်ဆောက်မလား? ငွေစုမယ့် Goal ထားပြီး စနစ်တကျ စီမံခန့်ခွဲနိုင်ဖို့ ကူညီပေးပါတယ်။</p>
+                </div>
+                <div class="benefit-card">
+                    <span class="benefit-icon">🧘</span>
+                    <h3>စိတ်ဖိစီးမှု လျော့ကျခြင်း</h3>
+                    <p>လကုန်ခါနီး ပိုက်ဆံပြတ်လပ်တဲ့ ဒုက္ခမှ ကင်းဝေးပြီး၊ လက်ကျန်ငွေကို ကြိုတင်ခန့်မှန်းနိုင်လို့ စိတ်အေးချမ်းမှု ရစေပါတယ်။</p>
+                </div>
+            </div>
 
-        <div class="footer">
+            <div class="who-should-use">
+                <h3>ဒီ App ကို ဘယ်သူတွေ သုံးသင့်လဲ?</h3>
+                <p style="color: var(--text-muted); margin-top: 10px;">
+                    Digital Finance စနစ်သည် လူတိုင်းအတွက် အရေးပါသော လက်နက်တစ်ခုဖြစ်သည်။
+                </p>
+                
+                <div class="audience-tags">
+                    <span class="tag">🎓 ကျောင်းသား/ကျောင်းသူများ</span>
+                    <span class="tag">💼 လစာစား ဝန်ထမ်းများ</span>
+                    <span class="tag">💻 Freelancers များ</span>
+                    <span class="tag">🏠 အိမ်ရှင်မများ</span>
+                    <span class="tag">🚀 လုပ်ငန်းရှင်အသစ်များ</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
             Money Tracker App &copy; 2025<br>
-            Version 1.0.0
+            Made with ❤️ for Financial Freedom.
         </div>
-    </div>
+    </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('downloadBtn');
+            btn.addEventListener('click', (e) => {
+                if (btn.classList.contains('disabled')) {
+                    e.preventDefault();
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = "ဗားရှင်းသစ် မကြာမီ ထွက်ရှိပါမည်";
+                    btn.style.backgroundColor = "#fff";
+                    btn.style.color = "#000";
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.backgroundColor = "";
+                        btn.style.color = "";
+                    }, 2000);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
