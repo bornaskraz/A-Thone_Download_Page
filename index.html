@@ -3,247 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Money Tracker | Professional Finance</title>
+    <title>Money Tracker | Simple & Clean</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. COLOR PALETTE --- */
+        /* --- 1. PASTEL PALETTE --- */
         :root {
-            /* Background Gradient Colors */
-            --bg-start: #0f3d3e; /* Deep Teal */
-            --bg-end: #102a28;   /* Dark Jungle */
+            --bg-white: #ffffff;
+            --text-dark: #334155;  /* Slate Grey */
+            --text-light: #94a3b8; /* Light Grey */
             
-            /* Text Colors */
-            --text-white: #f0fdfa;
-            --text-muted: #99f6e4; /* Light Teal Text */
+            /* Pastel Colors */
+            --pastel-green: #6ee7b7; /* Emerald 300 */
+            --pastel-blue: #93c5fd;  /* Blue 300 */
+            --pastel-mint: #d1fae5;  /* Mint Background */
             
-            /* Accent Colors */
-            --accent-lime: #2dd4bf; /* Teal/Lime Mix */
-            --accent-glow: rgba(45, 212, 191, 0.3);
-            
-            /* Card Colors */
-            --card-bg: rgba(17, 48, 48, 0.6);
-            --card-border: rgba(94, 234, 212, 0.2);
+            /* Gradient Mix */
+            --main-gradient: linear-gradient(135deg, #6ee7b7 0%, #93c5fd 100%);
+            --hover-gradient: linear-gradient(135deg, #34d399 0%, #60a5fa 100%);
         }
 
         /* --- 2. BASE STYLES --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
-            font-family: 'Outfit', sans-serif;
-            background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
-            color: var(--text-white);
+            font-family: 'Nunito', sans-serif; /* Round & Friendly Font */
+            background-color: var(--bg-white);
+            color: var(--text-dark);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* --- 3. BACKGROUND EFFECTS --- */
-        .bg-glow {
+        /* --- 3. BACKGROUND BLOBS (Pastel Decoration) --- */
+        .blob-container {
             position: fixed;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            filter: blur(80px);
-            opacity: 0.6;
+            overflow: hidden;
+            background: #ffffff;
         }
 
-        /* --- 4. CONTAINER --- */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.7;
+            animation: floatBlob 8s infinite alternate ease-in-out;
+        }
+
+        .blob-green {
+            top: -10%; left: -5%; width: 500px; height: 500px;
+            background: #d1fae5; /* Very Light Green */
+        }
+
+        .blob-blue {
+            bottom: -10%; right: -5%; width: 600px; height: 600px;
+            background: #dbeafe; /* Very Light Blue */
+            animation-delay: -4s;
+        }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(20px, 40px) scale(1.1); }
+        }
+
+        /* --- 4. LAYOUT --- */
         .container {
-            width: 100%;
-            max-width: 600px;
-            padding: 40px 24px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
             text-align: center;
         }
 
         /* --- 5. HERO SECTION --- */
-        .header {
-            margin-top: 40px;
-            margin-bottom: 50px;
-        }
-
-        .logo-wrapper {
+        .app-icon-box {
             position: relative;
             display: inline-block;
             margin-bottom: 30px;
         }
 
         .app-icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 22px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            border: 2px solid var(--card-border);
+            width: 120px;
+            height: 120px;
+            border-radius: 35px; /* Super rounded (Squircle) */
+            box-shadow: 0 20px 40px rgba(147, 197, 253, 0.3); /* Soft Blue Shadow */
+            object-fit: cover;
+            background: #fff;
+            padding: 5px; /* White border effect */
         }
 
         h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             margin-bottom: 10px;
-            letter-spacing: -1px;
+            color: var(--text-dark);
         }
 
-        .subtitle {
+        .gradient-text {
+            background: var(--main-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        /* --- 6. PASTEL BUTTON --- */
+        .btn-main {
+            background: var(--main-gradient);
+            color: #fff;
+            padding: 18px 50px;
+            border-radius: 50px;
             font-size: 1.1rem;
-            color: var(--text-muted);
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        /* --- 6. MODERN BUTTON --- */
-        .btn-wrapper {
-            margin-bottom: 60px;
-        }
-
-        .primary-btn {
-            background-color: var(--accent-lime);
-            color: #042f2e; /* Dark Text on Button */
-            padding: 18px 40px;
-            border-radius: 16px;
-            font-weight: 700;
+            font-weight: 800;
             text-decoration: none;
-            font-size: 1.1rem;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px rgba(45, 212, 191, 0.2);
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(110, 231, 183, 0.4); /* Greenish Shadow */
+            transition: all 0.3s ease;
+            border: 2px solid #fff; /* White border pop */
         }
 
-        .primary-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(45, 212, 191, 0.4);
-            background-color: #5eead4;
+        .btn-main:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(147, 197, 253, 0.5); /* Bluish Shadow on hover */
+            background: var(--hover-gradient);
         }
 
-        .primary-btn.disabled {
-            background-color: #1e4545;
-            color: #5f8a8a;
-            cursor: not-allowed;
+        .btn-main.disabled {
+            background: #e2e8f0;
+            color: #94a3b8;
             box-shadow: none;
+            cursor: not-allowed;
+            border-color: #f1f5f9;
         }
 
-        /* --- 7. INFO CARDS (Stack Layout) --- */
-        .info-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        /* --- 7. CARDS SECTION --- */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 60px;
         }
 
         .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 24px;
-            border-radius: 18px;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            backdrop-filter: blur(12px);
-            transition: transform 0.2s;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 30px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); /* Very subtle shadow */
+            transition: transform 0.3s;
+            border: 1px solid #f0f9ff;
         }
 
         .card:hover {
-            background: rgba(17, 48, 48, 0.9);
-            border-color: var(--accent-lime);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(147, 197, 253, 0.2);
         }
 
-        .card-icon {
-            font-size: 1.8rem;
-            background: rgba(45, 212, 191, 0.1);
-            width: 50px;
-            height: 50px;
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px auto;
+            border-radius: 20px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            border-radius: 12px;
-            color: var(--accent-lime);
+            justify-content: center;
+            font-size: 1.8rem;
         }
 
-        .card-text h3 {
+        /* Different Colors for Icons */
+        .icon-green { background: #ecfdf5; color: #34d399; }
+        .icon-blue { background: #eff6ff; color: #60a5fa; }
+        .icon-purple { background: #f5f3ff; color: #a78bfa; }
+
+        .card h3 {
             font-size: 1.1rem;
-            margin-bottom: 4px;
-            color: #fff;
+            margin-bottom: 8px;
+            color: var(--text-dark);
         }
 
-        .card-text p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin: 0;
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-light);
         }
 
         /* --- 8. FOOTER --- */
-        .footer {
-            margin-top: 60px;
-            font-size: 0.8rem;
-            color: #5f8a8a;
-            padding-bottom: 20px;
+        footer {
+            margin-top: 80px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .blob-green, .blob-blue { opacity: 0.5; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-glow"></div>
+    <div class="blob-container">
+        <div class="blob blob-green"></div>
+        <div class="blob blob-blue"></div>
+    </div>
 
     <div class="container">
         
-        <header class="header">
-            <div class="logo-wrapper">
-                <img src="icon.jpg" alt="Logo" class="app-icon">
-            </div>
-            
-            <h1>Money Tracker</h1>
-            <p class="subtitle">
-                သင့်ဘဏ္ဍာရေးကို စိမ်းလန်းစိုပြေစေမယ့်<br>
-                ခေတ်မီ ငွေကြေးမှတ်တမ်း Application
-            </p>
-        </header>
-
-        <div class="btn-wrapper">
-            <a href="#" id="downloadBtn" class="primary-btn disabled">
-                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                Download APK
-            </a>
-            <div style="margin-top: 15px; font-size: 0.85rem; color: #5f8a8a;">Version 1.0.0 • Coming Soon</div>
+        <div class="app-icon-box">
+            <img src="icon.jpg" alt="Logo" class="app-icon">
         </div>
 
-        <div class="info-cards">
-            
-            <div class="card">
-                <div class="card-icon">💎</div>
-                <div class="card-text">
-                    <h3>Simple & Smart</h3>
-                    <p>ရိုးရှင်းသော ဒီဇိုင်းဖြင့် ဝင်ငွေထွက်ငွေများကို လွယ်ကူစွာ မှတ်သားနိုင်ပါသည်။</p>
-                </div>
-            </div>
+        <h1>Money <span class="gradient-text">Tracker</span></h1>
+        <p class="subtitle">Simple. Fresh. Smart Finance.</p>
+        
+        <p style="max-width: 500px; margin: 0 auto 40px auto; color: #64748b; line-height: 1.6;">
+            သင့်ဘဏ္ဍာရေးကို ပေါ့ပါးလန်းဆန်းစွာ စီမံခန့်ခွဲလိုက်ပါ။ <br>
+            ရှုပ်ထွေးမှုမရှိ၊ အသုံးပြုရလွယ်ကူပြီး မျက်လုံးအေးစေမယ့် ဒီဇိုင်း။
+        </p>
 
-            <div class="card">
-                <div class="card-icon">📊</div>
-                <div class="card-text">
-                    <h3>Clear Reports</h3>
-                    <p>လစဉ် ငွေကြေးသုံးစွဲမှု အခြေအနေများကို ရှင်းလင်းစွာ ကြည့်ရှုနိုင်ပါသည်။</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-icon">🔒</div>
-                <div class="card-text">
-                    <h3>Private & Secure</h3>
-                    <p>သင့်အချက်အလက်များကို လုံခြုံစိတ်ချစွာ သိမ်းဆည်းပေးထားပါသည်။</p>
-                </div>
-            </div>
-
+        <a href="#" id="downloadBtn" class="btn-main disabled">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            Download App
+        </a>
+        
+        <div style="margin-top: 15px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">
+            Coming Soon for Android
         </div>
 
-        <footer class="footer">
-            Ngwe Mat Su &copy; 2025. All rights reserved.
+        <div class="features">
+            <div class="card">
+                <div class="icon-box icon-green">🍃</div>
+                <h3>Fresh UI</h3>
+                <p>သန့်ရှင်းသပ်ရပ်သော ဒီဇိုင်းကြောင့် သုံးစွဲရတာ စိတ်ကျေနပ်မှုရစေသည်။</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-box icon-blue">💧</div>
+                <h3>Clear Flow</h3>
+                <p>ငွေစီးဆင်းမှုများကို ရေကဲ့သို့ ကြည်လင်ပြတ်သားစွာ မြင်တွေ့နိုင်ပါသည်။</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-box icon-purple">✨</div>
+                <h3>Smart Future</h3>
+                <p>ပိုမိုကောင်းမွန်သော ဘဏ္ဍာရေးအနာဂတ်ကို တည်ဆောက်လိုက်ပါ။</p>
+            </div>
+        </div>
+
+        <footer>
+            Ngwe Mat Su (ငွေမှတ်စု) &copy; 2025
         </footer>
 
     </div>
@@ -254,14 +271,15 @@
             btn.addEventListener('click', (e) => {
                 if (btn.classList.contains('disabled')) {
                     e.preventDefault();
-                    // Button Text Change Animation
-                    const originalContent = btn.innerHTML;
-                    btn.innerHTML = "Opening Soon...";
-                    btn.style.opacity = "0.8";
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = "Not Available Yet";
+                    btn.style.background = "#fca5a5"; // Soft Red alert
+                    btn.style.borderColor = "#fca5a5";
                     
                     setTimeout(() => {
-                        btn.innerHTML = originalContent;
-                        btn.style.opacity = "1";
+                        btn.innerHTML = originalText;
+                        btn.style.background = ""; // Reset to CSS gradient
+                        btn.style.borderColor = "";
                     }, 1500);
                 }
             });
