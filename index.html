@@ -99,14 +99,24 @@
 
         .app-icon-lg:hover { transform: scale(1.05) rotate(3deg); }
 
+        /* Main App Name Style */
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem; /* App Name ကို ပိုကြီးလိုက်ပါတယ် */
             line-height: 1.1;
+            margin-bottom: 10px;
+            letter-spacing: -2px;
+        }
+
+        /* Slogan Style */
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #e2e8f0;
             margin-bottom: 20px;
         }
 
-        .hero p {
-            font-size: 1.25rem;
+        .hero p.description {
+            font-size: 1.1rem;
             color: var(--text-muted);
             max-width: 600px;
             margin-bottom: 50px;
@@ -188,7 +198,7 @@
 
         /* Audience Tag Cloud */
         .audience-wrapper {
-            grid-column: 1 / -1; /* Full width */
+            grid-column: 1 / -1;
             text-align: center;
             margin-top: 40px;
             padding: 40px;
@@ -227,7 +237,8 @@
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
+            .hero h1 { font-size: 3rem; }
+            .hero h2 { font-size: 1.2rem; }
             .bento-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -243,8 +254,11 @@
             
             <img src="icon.jpg" alt="Ngwe Mat Su Icon" class="app-icon-lg">
             
-            <h1>Smart Way to Track <br> Your <span class="text-gradient">Money</span></h1>
-            <p>
+            <h1 class="text-gradient">Money Tracker</h1>
+            
+            <h2>Smart Way to Track Your Money</h2>
+
+            <p class="description">
                 ဝင်ငွေထွက်ငွေများကို စနစ်တကျ မှတ်တမ်းတင်ပြီး<br>
                 သင့်ဘဏ္ဍာရေး လွတ်လပ်ခွင့်ကို ဒီနေ့ပဲ စတင်လိုက်ပါ။
             </p>
@@ -309,7 +323,6 @@
                 if (btn.classList.contains('disabled')) {
                     e.preventDefault();
                     const originalText = btn.innerHTML;
-                    // Button Animation Effect on Click
                     btn.innerHTML = "Opening Soon...";
                     btn.style.transform = "scale(0.95)";
                     
