@@ -3,102 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Money Tracker | Simple & Clean</title>
+    <title>A-Thone App | လုံခြုံစိတ်ချ ငွေစာရင်း</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. PASTEL PALETTE --- */
+        /* --- 1. PASTEL THEME VARIABLES --- */
         :root {
             --bg-white: #ffffff;
-            --text-dark: #334155;  /* Slate Grey */
-            --text-light: #94a3b8; /* Light Grey */
+            --text-dark: #334155;
+            --text-light: #64748b;
             
             /* Pastel Colors */
-            --pastel-green: #6ee7b7; /* Emerald 300 */
-            --pastel-blue: #93c5fd;  /* Blue 300 */
-            --pastel-mint: #d1fae5;  /* Mint Background */
+            --pastel-green: #6ee7b7;
+            --pastel-blue: #93c5fd;
             
-            /* Gradient Mix */
-            --main-gradient: linear-gradient(135deg, #6ee7b7 0%, #93c5fd 100%);
-            --hover-gradient: linear-gradient(135deg, #34d399 0%, #60a5fa 100%);
+            /* Gradients */
+            --main-gradient: linear-gradient(135deg, #34d399 0%, #60a5fa 100%);
+            --soft-gradient: linear-gradient(135deg, #d1fae5 0%, #dbeafe 100%);
         }
 
         /* --- 2. BASE STYLES --- */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
-            font-family: 'Nunito', sans-serif; /* Round & Friendly Font */
+            font-family: 'Padauk', 'Nunito', sans-serif; /* Myanmar Font included */
             background-color: var(--bg-white);
             color: var(--text-dark);
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            line-height: 1.8;
         }
 
-        /* --- 3. BACKGROUND BLOBS (Pastel Decoration) --- */
+        /* --- 3. BACKGROUND ANIMATION --- */
         .blob-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            overflow: hidden;
-            background: #ffffff;
+            background: #fff;
         }
 
         .blob {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.7;
-            animation: floatBlob 8s infinite alternate ease-in-out;
+            filter: blur(90px);
+            opacity: 0.6;
+            animation: float 10s infinite alternate;
         }
 
-        .blob-green {
-            top: -10%; left: -5%; width: 500px; height: 500px;
-            background: #d1fae5; /* Very Light Green */
-        }
+        .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #d1fae5; }
+        .blob-2 { bottom: -10%; right: -10%; width: 500px; height: 500px; background: #dbeafe; animation-delay: -5s; }
 
-        .blob-blue {
-            bottom: -10%; right: -5%; width: 600px; height: 600px;
-            background: #dbeafe; /* Very Light Blue */
-            animation-delay: -4s;
-        }
-
-        @keyframes floatBlob {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(20px, 40px) scale(1.1); }
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 50px); }
         }
 
         /* --- 4. LAYOUT --- */
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: 50px 24px;
             text-align: center;
         }
 
         /* --- 5. HERO SECTION --- */
-        .app-icon-box {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 30px;
-        }
-
         .app-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 35px; /* Super rounded (Squircle) */
-            box-shadow: 0 20px 40px rgba(147, 197, 253, 0.3); /* Soft Blue Shadow */
-            object-fit: cover;
+            width: 110px;
+            height: 110px;
+            border-radius: 30px;
+            box-shadow: 0 15px 30px rgba(52, 211, 153, 0.2);
+            margin-bottom: 25px;
+            padding: 4px;
             background: #fff;
-            padding: 5px; /* White border effect */
+            object-fit: cover;
         }
 
         h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            color: var(--text-dark);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            color: #0f172a;
         }
 
         .gradient-text {
@@ -108,161 +95,154 @@
             background-clip: text;
         }
 
-        p.subtitle {
-            font-size: 1.2rem;
+        p.hero-text {
+            font-size: 1.1rem;
             color: var(--text-light);
             margin-bottom: 40px;
-            font-weight: 600;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* --- 6. PASTEL BUTTON --- */
-        .btn-main {
+        /* --- 6. BUTTON --- */
+        .btn-download {
             background: var(--main-gradient);
             color: #fff;
-            padding: 18px 50px;
+            padding: 16px 40px;
             border-radius: 50px;
             font-size: 1.1rem;
-            font-weight: 800;
+            font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 10px 25px rgba(110, 231, 183, 0.4); /* Greenish Shadow */
-            transition: all 0.3s ease;
-            border: 2px solid #fff; /* White border pop */
+            box-shadow: 0 10px 20px rgba(52, 211, 153, 0.3);
+            transition: transform 0.2s;
+            border: 2px solid white;
         }
 
-        .btn-main:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(147, 197, 253, 0.5); /* Bluish Shadow on hover */
-            background: var(--hover-gradient);
+        .btn-download:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(96, 165, 250, 0.4);
         }
-
-        .btn-main.disabled {
-            background: #e2e8f0;
-            color: #94a3b8;
+        
+        .btn-download.disabled {
+            background: #cbd5e1;
             box-shadow: none;
             cursor: not-allowed;
-            border-color: #f1f5f9;
         }
 
-        /* --- 7. CARDS SECTION --- */
-        .features {
+        /* --- 7. FEATURES (Security Focus) --- */
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             margin-top: 60px;
+            text-align: left;
         }
 
         .card {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 30px 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); /* Very subtle shadow */
-            transition: transform 0.3s;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
             border: 1px solid #f0f9ff;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            transition: transform 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(147, 197, 253, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(147, 197, 253, 0.15);
+            border-color: #dbeafe;
         }
 
         .icon-box {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 20px auto;
-            border-radius: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
 
-        /* Different Colors for Icons */
-        .icon-green { background: #ecfdf5; color: #34d399; }
-        .icon-blue { background: #eff6ff; color: #60a5fa; }
-        .icon-purple { background: #f5f3ff; color: #a78bfa; }
+        .icon-blue { background: #eff6ff; color: #3b82f6; }
+        .icon-green { background: #ecfdf5; color: #10b981; }
 
         .card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            color: var(--text-dark);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #1e293b;
         }
 
         .card p {
             font-size: 0.95rem;
-            color: var(--text-light);
+            color: #64748b;
+            margin: 0;
         }
 
         /* --- 8. FOOTER --- */
         footer {
-            margin-top: 80px;
+            margin-top: 60px;
             font-size: 0.9rem;
-            color: #cbd5e1;
-        }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            .blob-green, .blob-blue { opacity: 0.5; }
+            color: #94a3b8;
         }
     </style>
 </head>
 <body>
 
     <div class="blob-container">
-        <div class="blob blob-green"></div>
-        <div class="blob blob-blue"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
     </div>
 
     <div class="container">
         
-        <div class="app-icon-box">
-            <img src="icon.jpg" alt="Logo" class="app-icon">
-        </div>
+        <img src="icon.jpg" alt="A-Thone App Icon" class="app-icon">
 
-        <h1>Money <span class="gradient-text">Tracker</span></h1>
-        <p class="subtitle">Simple. Fresh. Smart Finance.</p>
-        
-        <p style="max-width: 500px; margin: 0 auto 40px auto; color: #64748b; line-height: 1.6;">
-            သင့်ဘဏ္ဍာရေးကို ပေါ့ပါးလန်းဆန်းစွာ စီမံခန့်ခွဲလိုက်ပါ။ <br>
-            ရှုပ်ထွေးမှုမရှိ၊ အသုံးပြုရလွယ်ကူပြီး မျက်လုံးအေးစေမယ့် ဒီဇိုင်း။
+        <h1>
+            ကိုယ့်စာရင်း ကိုယ်မှတ်မယ်..<br>
+            လုံခြုံစိတ်ချ <span class="gradient-text">A-Thone App</span>
+        </h1>
+
+        <p class="hero-text">
+            စာအုပ်ထဲမှာ လိုက်မှတ်နေတုန်းလား? စာအုပ်ပျောက်သွားရင် ဘယ်လိုလုပ်မလဲ? <br>
+            <strong>A-Thone App</strong> မှာမှတ်ရင် ဖုန်းပျောက်သွားရင်တောင် စာရင်းတွေ မပျောက်ပါဘူး။
         </p>
 
-        <a href="#" id="downloadBtn" class="btn-main disabled">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <a href="#" id="downloadBtn" class="btn-download disabled">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
             Download App
         </a>
-        
-        <div style="margin-top: 15px; font-size: 0.8rem; color: #94a3b8; font-weight: 600;">
-            Coming Soon for Android
-        </div>
+        <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 10px;">Version 1.0.0 • Coming Soon</div>
 
-        <div class="features">
+        <div class="features-grid">
+            
             <div class="card">
-                <div class="icon-box icon-green">🍃</div>
-                <h3>Fresh UI</h3>
-                <p>သန့်ရှင်းသပ်ရပ်သော ဒီဇိုင်းကြောင့် သုံးစွဲရတာ စိတ်ကျေနပ်မှုရစေသည်။</p>
+                <div class="icon-box icon-blue">🔒</div>
+                <h3>Google Account ဖြင့် ချိတ်ဆက်ခြင်း</h3>
+                <p>
+                    Login ဝင်လိုက်တာနဲ့ သင့် Data တွေက လုံခြုံသွားပါပြီ။ 
+                    ဖုန်းအသစ်ပြောင်းရင်တောင် ကိုယ့်အကောင့်နဲ့ ပြန်ဝင်လိုက်တာနဲ့ စာရင်းအဟောင်းတွေ ပြန်ပေါ်လာမှာပါ။
+                </p>
             </div>
 
             <div class="card">
-                <div class="icon-box icon-blue">💧</div>
-                <h3>Clear Flow</h3>
-                <p>ငွေစီးဆင်းမှုများကို ရေကဲ့သို့ ကြည်လင်ပြတ်သားစွာ မြင်တွေ့နိုင်ပါသည်။</p>
+                <div class="icon-box icon-green">⚡</div>
+                <h3>မြန်ဆန်သွက်လက်ခြင်း</h3>
+                <p>
+                    App က ပေါ့ပါးပြီး သုံးရတာ အရမ်းသွက်ပါတယ်။ 
+                    ကြော်ငြာတွေ ရှုပ်ပွမနေဘဲ သန့်ရှင်းတဲ့ ဒီဇိုင်းနဲ့မို့ သုံးရတာ စိတ်ချမ်းသာစေမှာပါ။
+                </p>
             </div>
 
-            <div class="card">
-                <div class="icon-box icon-purple">✨</div>
-                <h3>Smart Future</h3>
-                <p>ပိုမိုကောင်းမွန်သော ဘဏ္ဍာရေးအနာဂတ်ကို တည်ဆောက်လိုက်ပါ။</p>
-            </div>
         </div>
 
         <footer>
-            Ngwe Mat Su (ငွေမှတ်စု) &copy; 2025
+            © 2025 A-Thone App. Safe & Secure.
         </footer>
-
     </div>
 
     <script>
@@ -271,16 +251,15 @@
             btn.addEventListener('click', (e) => {
                 if (btn.classList.contains('disabled')) {
                     e.preventDefault();
-                    const originalText = btn.innerHTML;
-                    btn.innerHTML = "Not Available Yet";
-                    btn.style.background = "#fca5a5"; // Soft Red alert
-                    btn.style.borderColor = "#fca5a5";
+                    // Button Feedback
+                    const oldText = btn.innerHTML;
+                    btn.innerHTML = "မကြာမီ လာမည်...";
+                    btn.style.background = "#94a3b8"; // Grey out
                     
                     setTimeout(() => {
-                        btn.innerHTML = originalText;
-                        btn.style.background = ""; // Reset to CSS gradient
-                        btn.style.borderColor = "";
-                    }, 1500);
+                        btn.innerHTML = oldText;
+                        btn.style.background = ""; // Restore Gradient
+                    }, 2000);
                 }
             });
         });
