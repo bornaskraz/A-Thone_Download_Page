@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A-Thone App | နေ့စဉ် ငွေကြေးစီမံခန့်ခွဲမှု</title>
-    <link rel="icon" href="icon.png" type="image/png">
     
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="shortcut icon" href="icon.png" type="image/png">
     <link rel="apple-touch-icon" href="icon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&family=Padauk:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. THEME VARIABLES (Green Dominant) --- */
+        /* --- 1. THEME VARIABLES --- */
         :root {
             --text-dark: #1e293b;
-            --text-body: #334155; /* Slightly darker for better contrast on green */
+            --text-body: #334155;
             
             /* Green Theme Colors */
-            --bg-gradient-start: #e6fffa; /* Very light mint */
-            --bg-gradient-end: #f0fdfa;   /* Light cyan */
+            --bg-gradient-start: #e6fffa;
+            --bg-gradient-end: #f0fdfa;
             
             --green-primary: #10b981;
+            --green-dark: #047857;
             --blue-primary: #3b82f6;
             --purple-primary: #a855f7;
 
-            /* Card & Section Backgrounds */
+            /* Glassmorphism */
             --glass-bg: rgba(255, 255, 255, 0.7);
             --glass-border: rgba(255, 255, 255, 0.9);
             
@@ -37,7 +40,6 @@
         
         body {
             font-family: 'Padauk', 'Nunito', sans-serif;
-            /* Main Background is now a Green-ish Gradient */
             background: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
             color: var(--text-dark);
             min-height: 100vh;
@@ -46,23 +48,10 @@
             position: relative;
         }
 
-
-        /* --- 3. BACKGROUND BLOBS (Adjusted for Green Theme) --- */
-        .blob-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-        }
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.6; /* Increased opacity */
-            animation: float 10s infinite alternate;
-        }
-        /* Dominant Green Blob */
+        /* --- 3. BACKGROUND BLOBS --- */
+        .blob-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.6; animation: float 10s infinite alternate; }
         .b1 { top: -20%; left: -10%; width: 700px; height: 700px; background: #bbf7d0; } 
-        /* accent Blue Blob */
         .b2 { bottom: -20%; right: -10%; width: 600px; height: 600px; background: #bfdbfe; animation-delay: -5s; }
 
         @keyframes float {
@@ -70,248 +59,135 @@
             100% { transform: translate(30px, 40px); }
         }
 
-        /* --- 4. LAYOUT --- */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 50px 24px;
-            text-align: center;
-        }
-
-        /* --- 5. HERO SECTION --- */
+        /* --- 4. CONTAINER & HERO --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 50px 24px; text-align: center; }
         .hero { margin-bottom: 60px; }
         
         .app-icon {
-            width: 110px;
-            height: 110px;
-            border-radius: 30px;
+            width: 110px; height: 110px; border-radius: 30px;
             box-shadow: 0 20px 40px rgba(52, 211, 153, 0.3);
-            margin-bottom: 15px;
-            object-fit: cover;
-            border: 5px solid var(--glass-border);
-            background: #fff;
+            margin-bottom: 15px; object-fit: cover;
+            border: 5px solid var(--glass-border); background: #fff;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 5px;
-            line-height: 1.2;
-            color: var(--text-dark);
+        h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 5px; line-height: 1.2; color: var(--text-dark); }
+        
+        /* Beta Badge */
+        .beta-badge {
+            font-size: 0.4em; vertical-align: middle;
+            background: #fef9c3; color: #ca8a04;
+            padding: 4px 12px; border-radius: 20px;
+            letter-spacing: 1px; border: 1px solid #fde047;
+            margin-left: 10px; text-transform: uppercase; font-weight: 800;
+            position: relative; top: -5px;
         }
 
         h4.gradient-text {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
+            font-size: 1.2rem; margin-bottom: 25px;
             background: var(--main-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
-        p.hero-intro {
-            font-size: 1.1rem;
-            color: var(--text-body);
-            max-width: 650px;
-            margin: 0 auto 35px auto;
-            font-weight: 500;
-        }
+        p.hero-intro { font-size: 1.1rem; color: var(--text-body); max-width: 650px; margin: 0 auto 35px auto; font-weight: 500; }
 
-        /* Call to Action Button */
         .btn-download {
-            background: var(--main-gradient);
-            color: #fff;
-            padding: 16px 45px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 15px 30px rgba(52, 211, 153, 0.4);
-            transition: all 0.3s ease;
+            background: var(--main-gradient); color: #fff; padding: 16px 45px;
+            border-radius: 50px; font-size: 1.1rem; font-weight: 700;
+            text-decoration: none; display: inline-flex; align-items: center; gap: 12px;
+            box-shadow: 0 15px 30px rgba(52, 211, 153, 0.4); transition: all 0.3s ease;
             border: 3px solid rgba(255,255,255,0.5);
         }
+        .btn-download:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(96, 165, 250, 0.5); }
+        .btn-download.disabled { background: #94a3b8; box-shadow: none; cursor: not-allowed; border-color: #cbd5e1; }
 
-        .btn-download:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(96, 165, 250, 0.5);
-        }
-        .btn-download.disabled {
-            background: #94a3b8;
-            box-shadow: none;
-            cursor: not-allowed;
-            border-color: #cbd5e1;
-        }
-
-        /* --- 6. GRID FEATURES (Glassmorphism) --- */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            text-align: left;
-            margin-bottom: 60px;
-        }
+        /* --- 5. GRID FEATURES --- */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; text-align: left; margin-bottom: 60px; }
 
         .card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 2px solid var(--glass-border);
-            border-radius: 28px;
-            padding: 35px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            background: var(--glass-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 2px solid var(--glass-border); border-radius: 28px; padding: 35px;
+            transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 8px 20px rgba(0,0,0,0.03);
         }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(52, 211, 153, 0.2); border-color: #fff; background: rgba(255,255,255,0.85); }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 50px rgba(52, 211, 153, 0.2);
-            border-color: #fff;
-            background: rgba(255,255,255,0.85);
-        }
-
-        .icon-box {
-            width: 55px;
-            height: 55px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
+        .icon-box { width: 55px; height: 55px; border-radius: 18px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .feather-icon { width: 28px; height: 28px; stroke-width: 2; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
         
-        /* SVG Icon Styling */
-        .feather-icon {
-            width: 28px;
-            height: 28px;
-            stroke-width: 2;
-            stroke: currentColor;
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        /* Feature Colors */
         .bg-green { background: #d1fae5; color: var(--green-primary); }
         .bg-blue { background: #dbeafe; color: var(--blue-primary); }
         .bg-purple { background: #f3e8ff; color: var(--purple-primary); }
 
-        .card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-        }
+        .card h3 { font-size: 1.25rem; margin-bottom: 12px; color: var(--text-dark); }
+        .card p { font-size: 1rem; color: var(--text-body); line-height: 1.7; margin: 0; }
 
-        .card p {
-            font-size: 1rem;
-            color: var(--text-body);
-            line-height: 1.7;
-            margin: 0;
-        }
-
-        /* --- 7. EXTRA FEATURES (Glass) --- */
+        /* --- 6. EXTRA FEATURES --- */
         .extra-section {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            border-radius: 28px;
-            padding: 35px;
-            border: 2px solid var(--glass-border);
-            display: inline-block;
-            width: 100%;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+            background: var(--glass-bg); backdrop-filter: blur(16px); border-radius: 28px;
+            padding: 35px; border: 2px solid var(--glass-border); display: inline-block; width: 100%;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03); margin-bottom: 60px;
         }
-
-        .extra-title {
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-bottom: 25px;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .tags-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-
+        .extra-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 25px; color: var(--text-dark); display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .tags-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
         .tag {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid var(--glass-border);
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            color: var(--text-body);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.6); border: 1px solid var(--glass-border);
+            padding: 10px 24px; border-radius: 50px; font-size: 0.95rem; color: var(--text-body);
+            display: flex; align-items: center; gap: 10px; font-weight: 600; transition: all 0.3s;
         }
-        
-        .tag:hover {
-            background: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 211, 153, 0.2);
-        }
-        
+        .tag:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(52, 211, 153, 0.2); }
         .tag svg { width: 18px; height: 18px; color: var(--green-primary); }
 
+        /* --- 7. FEEDBACK SECTION --- */
+        .feedback-section { margin-bottom: 60px; text-align: left; }
+        .feedback-container {
+            background: var(--glass-bg); backdrop-filter: blur(16px);
+            border: 2px solid var(--glass-border); border-radius: 28px; padding: 30px;
+            max-width: 800px; margin: 0 auto;
+        }
+        .feedback-header { text-align: center; margin-bottom: 30px; }
+        .feedback-form { display: flex; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; }
+        .input-group { flex: 1; min-width: 200px; }
+        .custom-input {
+            width: 100%; padding: 15px 20px; border-radius: 50px;
+            border: 1px solid #cbd5e1; background: rgba(255, 255, 255, 0.8);
+            font-family: inherit; outline: none; transition: 0.3s;
+        }
+        .custom-input:focus { border-color: var(--green-primary); box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1); }
+        .btn-submit {
+            background: var(--green-primary); color: white; border: none;
+            padding: 15px 30px; border-radius: 50px; cursor: pointer;
+            font-weight: bold; transition: 0.3s; display: flex; align-items: center; gap: 8px;
+        }
+        .btn-submit:hover { background: var(--green-dark); transform: translateY(-2px); }
+        .btn-submit:disabled { background: #cbd5e1; cursor: not-allowed; }
+
+        .review-list { display: flex; flex-direction: column; gap: 15px; max-height: 400px; overflow-y: auto; padding-right: 10px; }
+        .review-card {
+            background: #fff; padding: 20px; border-radius: 18px; border: 1px solid #e2e8f0;
+            display: flex; gap: 15px; animation: fadeIn 0.5s ease;
+        }
+        .avatar {
+            width: 45px; height: 45px; background: linear-gradient(135deg, #a7f3d0, #bfdbfe);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--text-dark); font-size: 1.1rem; flex-shrink: 0;
+        }
+        .review-content h4 { margin: 0; font-size: 1rem; color: var(--text-dark); }
+        .review-content p { margin: 5px 0 0 0; font-size: 0.95rem; color: var(--text-body); }
+        .review-time { font-size: 0.75rem; color: #94a3b8; margin-top: 5px; display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         /* --- 8. FOOTER --- */
-        .footer-container {
-            margin-top: 70px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .contact-list {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-bottom: 25px;
-        }
-
+        .footer-container { margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .contact-list { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 25px; }
         .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 12px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            color: var(--text-body);
-            font-size: 0.95rem;
-            font-weight: 700;
-            transition: all 0.3s ease;
+            display: flex; align-items: center; gap: 10px; background: var(--glass-bg);
+            border: 1px solid var(--glass-border); padding: 12px 24px; border-radius: 50px;
+            text-decoration: none; color: var(--text-body); font-size: 0.95rem; font-weight: 700; transition: all 0.3s ease;
         }
+        .contact-item:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(52, 211, 153, 0.25); background: #fff; color: var(--green-primary); }
+        .contact-icon { width: 22px; height: 22px; }
+        .copyright { font-size: 0.9rem; color: var(--text-body); opacity: 0.8; }
 
-        .contact-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(52, 211, 153, 0.25);
-            background: #fff;
-            color: var(--green-primary);
-        }
-
-        .contact-icon {
-            width: 22px;
-            height: 22px;
-        }
-
-        .copyright {
-            font-size: 0.9rem;
-            color: var(--text-body);
-            opacity: 0.8;
-        }
-
-        /* --- BETA BADGE STYLE --- */
     </style>
 </head>
 <body>
@@ -325,7 +201,7 @@
         
         <div class="hero">
             <img src="icon.png" alt="A-Thone Icon" class="app-icon">
-            <h1 class="logoName">A-Thone</h1>
+            <h1>A-Thone <span class="beta-badge">Beta</span></h1>
             <h4 class="gradient-text">Master your finances, effortlessly.</h4>
 
             <p class="hero-intro">
@@ -337,55 +213,38 @@
                 <svg class="feather-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 Download App
             </a>
-            <div style="font-size: 0.85rem; color: var(--text-body); margin-top: 12px; font-weight: 600;">Beta Version • Free Download</div>
+            <div style="font-size: 0.85rem; color: var(--text-body); margin-top: 12px; font-weight: 600;">Version 1.0.0 (Beta) • Free</div>
         </div>
 
         <div class="features-grid">
-
             <div class="card">
                 <div class="icon-box bg-blue">
                     <svg class="feather-icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                 </div>
                 <h3>Google Account ဖြင့် လုံခြုံခြင်း</h3>
-                <p>
-                    Login ဝင်လိုက်တာနဲ့ သင့် Data တွေက လုံခြုံသွားပါပြီ။ 
-                    ဖုန်းအသစ်ပြောင်းရင်တောင် ကိုယ့်အကောင့်နဲ့ ပြန်ဝင်လိုက်တာနဲ့ စာရင်းအဟောင်းတွေ ပြန်ပေါ်လာမှာပါ။
-                </p>
+                <p>Login ဝင်လိုက်တာနဲ့ သင့် Data တွေက လုံခြုံသွားပါပြီ။ ဖုန်းအသစ်ပြောင်းရင်တောင် ပြန်ဝင်လိုက်တာနဲ့ စာရင်းအဟောင်းတွေ ပြန်ပေါ်လာမှာပါ။</p>
             </div>
-
             <div class="card">
                 <div class="icon-box bg-green">
                     <svg class="feather-icon" viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                 </div>
                 <h3>လစဉ် Budget သတ်မှတ်ခြင်း</h3>
-                <p>
-                    မလိုအပ်ဘဲ ငွေမကုန်ရအောင် တစ်လစာ ဘတ်ဂျက်သတ်မှတ်ထားနိုင်ပါတယ်။ 
-                    သတ်မှတ်ထားတာထက် ကျော်လွန်ခါနီးရင် App က သတိပေးမှာမို့ လကုန်ရက်တွေကို ဖြတ်သန်းရ လွယ်ကူစေမှာပါ။
-                </p>
+                <p>မလိုအပ်ဘဲ ငွေမကုန်ရအောင် တစ်လစာ ဘတ်ဂျက်သတ်မှတ်ထားနိုင်ပါတယ်။ သတ်မှတ်ထားတာထက် ကျော်လွန်ခါနီးရင် App က သတိပေးမှာပါ။</p>
             </div>
-
             <div class="card">
                 <div class="icon-box bg-purple">
                     <svg class="feather-icon" viewBox="0 0 24 24"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
                 </div>
                 <h3>ရှင်းလင်းသော ဂရပ်များ</h3>
-                <p>
-                    စာရင်းတွေကို စာတွေချည်းပဲ ဖတ်ရတာ ပျင်းစရာကောင်းပါတယ်။ 
-                    ဝင်ငွေ/ထွက်ငွေ နှိုင်းယှဉ်ချက်တွေ၊ ဘယ်နေရာတွေမှာ အသုံးများနေလဲဆိုတာတွေကို Pie Chart လှလှလေးတွေနဲ့ ပြသပေးပါတယ်။
-                </p>
+                <p>ဝင်ငွေ/ထွက်ငွေ နှိုင်းယှဉ်ချက်တွေ၊ ဘယ်နေရာတွေမှာ အသုံးများနေလဲဆိုတာတွေကို Pie Chart လှလှလေးတွေနဲ့ ပြသပေးပါတယ်။</p>
             </div>
-
             <div class="card">
                 <div class="icon-box bg-blue">
                     <svg class="feather-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                 </div>
                 <h3>မြန်ဆန်သွက်လက်ခြင်း</h3>
-                <p>
-                    App က ပေါ့ပါးပြီး သုံးရတာ အရမ်းသွက်ပါတယ်။ 
-                    ကြော်ငြာတွေ ရှုပ်ပွမနေဘဲ သန့်ရှင်းတဲ့ ဒီဇိုင်းနဲ့မို့ သုံးရတာ စိတ်ချမ်းသာစေမှာပါ။
-                </p>
+                <p>App က ပေါ့ပါးပြီး သုံးရတာ အရမ်းသွက်ပါတယ်။ ကြော်ငြာတွေ ရှုပ်ပွမနေဘဲ သန့်ရှင်းတဲ့ ဒီဇိုင်းနဲ့မို့ သုံးရတာ စိတ်ချမ်းသာစေမှာပါ။</p>
             </div>
-
         </div>
 
         <div class="extra-section">
@@ -394,46 +253,129 @@
                 စိတ်ကြိုက်ပြင်ဆင်နိုင်မှုများ
             </div>
             <div class="tags-container">
-                <div class="tag">
-                    <svg class="feather-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                    မြန်မာ/အင်္ဂလိပ် နှစ်ဘာသာ
-                </div>
-                <div class="tag">
-                    <svg class="feather-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                    မျက်စိအေးစေမယ့် Dark Mode
-                </div>
-                <div class="tag">
-                    <svg class="feather-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    လွန်ခဲ့သော စာရင်းများ ပြန်ကြည့်ခြင်း
-                </div>
+                <div class="tag"><svg class="feather-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg> မြန်မာ/အင်္ဂလိပ် နှစ်ဘာသာ</div>
+                <div class="tag"><svg class="feather-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg> မျက်စိအေးစေမယ့် Dark Mode</div>
+                <div class="tag"><svg class="feather-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> လွန်ခဲ့သော စာရင်းများ ပြန်ကြည့်ခြင်း</div>
             </div>
         </div>
 
-       <footer class="footer-container">
+        <div class="feedback-section">
+            <div class="feedback-container">
+                <div class="feedback-header">
+                    <h3>💬 Real-time Feedback</h3>
+                    <p style="font-size: 0.9rem; color: var(--text-body);">စမ်းသပ်သုံးစွဲပြီး အကြံပြုချက်များ ရေးသားပေးပါ။</p>
+                </div>
+                <div class="feedback-form">
+                    <div class="input-group"><input type="text" id="userName" class="custom-input" placeholder="သင့်နာမည် (Name)"></div>
+                    <div class="input-group" style="flex: 2;"><input type="text" id="userMessage" class="custom-input" placeholder="အကြံပြုချက်..."></div>
+                    <button onclick="window.addFeedback()" class="btn-submit">
+                        Send <svg class="feather-icon" style="width:18px; height:18px;" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </div>
+                <div class="review-list" id="reviewList"></div>
+            </div>
+        </div>
+
+        <footer class="footer-container">
             <div class="contact-list">
-                
                 <a href="mailto:bornaskraz@gmail.com" class="contact-item">
                     <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #ea4335;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                     <span>Email Support</span>
                 </a>
-
                 <a href="https://t.me/swelmyel" target="_blank" class="contact-item">
                     <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #229ED9;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                     <span>Telegram</span>
                 </a>
-
                 <a href="https://m.me/swelmyelhtet" target="_blank" class="contact-item">
                     <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #0084FF;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                     <span>Messenger</span>
                 </a>
-
             </div>
-
-            <div class="copyright">
-                © 2025 A-Thone App. All rights reserved.
-            </div>
+            <div class="copyright">© 2025 A-Thone App. All rights reserved.</div>
         </footer>
     </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // ⚠️⚠️ TODO: REPLACE THIS WITH YOUR ACTUAL FIREBASE CONFIG ⚠️⚠️
+        const firebaseConfig = {
+
+  apiKey: "AIzaSyBeJzlXQZFeK_NW16IgP17vUYQ8MiF3-Tc",
+
+  authDomain: "a-thone.firebaseapp.com",
+
+  projectId: "a-thone",
+
+  storageBucket: "a-thone.firebasestorage.app",
+
+  messagingSenderId: "1085026893556",
+
+  appId: "1:1085026893556:web:c3785d4f8665680ffde8a1",
+
+  measurementId: "G-P10429WJ63"
+
+};
+
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Add Feedback Function
+        window.addFeedback = async function() {
+            const nameInput = document.getElementById('userName');
+            const msgInput = document.getElementById('userMessage');
+            const btn = document.querySelector('.btn-submit');
+
+            const name = nameInput.value.trim() || "Unknown User";
+            const msg = msgInput.value.trim();
+
+            if (msg === "") { alert("ကျေးဇူးပြု၍ စာအရင်ရေးပါ..."); return; }
+
+            btn.innerHTML = 'Sending...';
+            btn.disabled = true;
+
+            try {
+                await addDoc(collection(db, "feedbacks"), {
+                    name: name, msg: msg,
+                    initials: name.substring(0, 2).toUpperCase(),
+                    timestamp: serverTimestamp()
+                });
+                nameInput.value = ""; msgInput.value = "";
+            } catch (e) {
+                console.error("Error:", e); alert("Error sending feedback");
+            } finally {
+                btn.innerHTML = 'Send <svg class="feather-icon" style="width:18px; height:18px;" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>';
+                btn.disabled = false;
+            }
+        }
+
+        // Real-time Listener
+        const q = query(collection(db, "feedbacks"), orderBy("timestamp", "desc"));
+        onSnapshot(q, (snapshot) => {
+            const list = document.getElementById('reviewList');
+            list.innerHTML = "";
+            snapshot.forEach((doc) => {
+                const data = doc.data();
+                let timeDisplay = "Just now";
+                if(data.timestamp) {
+                    const date = data.timestamp.toDate();
+                    timeDisplay = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                }
+                const card = document.createElement('div');
+                card.className = 'review-card';
+                card.innerHTML = `
+                    <div class="avatar">${data.initials}</div>
+                    <div class="review-content">
+                        <h4>${data.name}</h4><p>${data.msg}</p><span class="review-time">${timeDisplay}</span>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -442,12 +384,8 @@
                 if (btn.classList.contains('disabled')) {
                     e.preventDefault();
                     const oldText = btn.innerHTML;
-                    btn.innerHTML = "မကြာမီ လာမည်...";
-                    btn.style.opacity = "0.7";
-                    setTimeout(() => {
-                        btn.innerHTML = oldText;
-                        btn.style.opacity = "1";
-                    }, 1500);
+                    btn.innerHTML = "မကြာမီ လာမည်..."; btn.style.opacity = "0.7";
+                    setTimeout(() => { btn.innerHTML = oldText; btn.style.opacity = "1"; }, 1500);
                 }
             });
         });
