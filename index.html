@@ -188,6 +188,16 @@
         .contact-icon { width: 22px; height: 22px; }
         .copyright { font-size: 0.9rem; color: var(--text-body); opacity: 0.8; }
 
+        * {
+            -webkit-tap-highlight-color: transparent; /* Chrome/Safari/Android အတွက် */
+            -webkit-touch-callout: none; /* iOS အတွက် menu မပေါ်အောင် */
+        }
+
+        .btn-download:focus, .btn-download:active {
+            outline: none; /* ဘောင်ကွပ်တာကို ဖျောက်မည် */
+            background: var(--green-dark); /* နှိပ်လိုက်ရင် အပြာကွက်အစား ကိုယ်လိုချင်တဲ့ အရောင်ပြောင်းအောင် (Optional) */
+        }
+
     </style>
 </head>
 <body>
