@@ -209,10 +209,10 @@
                 သင့်ရဲ့ နေ့စဉ် ငွေကြေးစီမံခန့်ခွဲမှုအတွက် A-Thone App ကို အသုံးပြုလိုက်ပါ။
             </p>
 
-            <a href="#" id="downloadBtn" class="btn-download disabled">
-                <svg class="feather-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Download App
-            </a>
+            <a href="A-Thone.apk" class="btn-download" download>
+    <svg class="feather-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+    Download Android APK
+</a>
             <div style="font-size: 0.85rem; color: var(--text-body); margin-top: 12px; font-weight: 600;">Version 1.0.0 (Beta) • Free</div>
         </div>
 
@@ -374,20 +374,6 @@
                     </div>
                 `;
                 list.appendChild(card);
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const btn = document.getElementById('downloadBtn');
-            btn.addEventListener('click', (e) => {
-                if (btn.classList.contains('disabled')) {
-                    e.preventDefault();
-                    const oldText = btn.innerHTML;
-                    btn.innerHTML = "မကြာမီ လာမည်..."; btn.style.opacity = "0.7";
-                    setTimeout(() => { btn.innerHTML = oldText; btn.style.opacity = "1"; }, 1500);
-                }
             });
         });
     </script>
